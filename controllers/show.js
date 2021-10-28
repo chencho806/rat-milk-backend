@@ -35,5 +35,14 @@ Router.delete('/:id', async (req, res) => {
     }
 });
 
+//Update Route
+Router.put('/:id', async (req, res) => {
+    try {
+        res.json(await Show.findByIdAndUpdate(req.params.id, { new: true }));
+    } catch (error) {
+        res.status(400).json(error);
+    }
+});
+
 
 module.exports = Router
