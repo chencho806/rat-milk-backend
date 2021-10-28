@@ -4,12 +4,12 @@ const Show = require('../models/show');
 
 
 Router.get('/', (req,res) => {
-    res.send('Hola Bitch');
+    res.send('Hola Pendejo');
 });
 
 
 //Index Route
-Router.get('/shows', async (req, res) => {
+Router.get('/', async (req, res) => {
     try {
         res.json(await Show.find({}));
     } catch (error) {
@@ -18,11 +18,20 @@ Router.get('/shows', async (req, res) => {
 });
 
 //Create Show
-Router.post('/show', async (req, res) => {
+Router.post('/', async (req, res) => {
     try {
         res.json(await Show.create(req.body));
     } catch (error) {
         res.status(400).json(error);
+    }
+});
+
+//Delete Route
+Router.delete('/:id', async (req, res) => {
+    try {
+        res.json(await Show.findByIdAndDelete(req.params.id));
+    } catch (error) {
+        res.status(400),json(error);
     }
 });
 

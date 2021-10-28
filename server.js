@@ -21,6 +21,7 @@ mongoose.connection
     app.use(express.json()); 
     
     app.use('/', showController);
+    app.use('/shows', showController);
 
 
 
