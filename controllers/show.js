@@ -8,6 +8,14 @@ Router.get('/', (req,res) => {
 });
 
 
+//Index Route
+Router.get('/shows', async (req, res) => {
+    try {
+        res.json(await Show.find({}));
+    } catch (error) {
+        res.status(400).json(error);
+    }
+});
 
 
 module.exports = Router
