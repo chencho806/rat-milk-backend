@@ -1,8 +1,11 @@
 require('dotenv').config();
 const { DATABASE_URL, PORT = 3001 } = process.env;
 const express = require('express');
-const mongoose = require('mongoose');
 const app = express();
+const mongoose = require('mongoose');
+const cors = require('cors');
+const morgan = require('morgan');
+const showController = require('./controllers/show')
 
 mongoose.connect(DATABASE_URL);
 
@@ -13,9 +16,13 @@ mongoose.connection
 
 
 
-app.get('/', (req,res) => {
-    res.send('Hola Pendejo')
-});
+    app.use(cors()); 
+    app.use(morgan("dev")); 
+    app.use(express.json()); 
+    
+    app.use('/', showController);
+
+
 
 
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
