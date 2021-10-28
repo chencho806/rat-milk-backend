@@ -4,7 +4,7 @@ const Show = require('../models/show');
 
 
 Router.get('/', (req,res) => {
-    res.send('Hola Bitch')
+    res.send('Hola Bitch');
 });
 
 
@@ -12,6 +12,15 @@ Router.get('/', (req,res) => {
 Router.get('/shows', async (req, res) => {
     try {
         res.json(await Show.find({}));
+    } catch (error) {
+        res.status(400).json(error);
+    }
+});
+
+//Create Show
+Router.post('/show', async (req, res) => {
+    try {
+        res.json(await Show.create(req.body));
     } catch (error) {
         res.status(400).json(error);
     }
