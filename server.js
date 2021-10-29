@@ -20,7 +20,7 @@ mongoose.connection
     app.use(morgan("dev")); 
     app.use(express.json()); 
     
-   
+    app.use('/', showController);
     app.use('/shows', showController);
 
 
