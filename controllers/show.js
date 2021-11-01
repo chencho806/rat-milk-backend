@@ -3,13 +3,10 @@ const Router = express.Router();
 const Show = require('../models/show');
 
 
-Router.get('/', (req,res) => {
-    res.send('Hola Pendejo');
-});
 
 
 //Index Route
-Router.get('/', async (req, res) => {
+Router.get('/shows', async (req, res) => {
     try {
         res.json(await Show.find({}));
     } catch (error) {
@@ -17,8 +14,8 @@ Router.get('/', async (req, res) => {
     }
 });
 
-//Create Show
-Router.post('/', async (req, res) => {
+//Create Route
+Router.post('/shows', async (req, res) => {
     try {
         res.json(await Show.create(req.body));
     } catch (error) {
@@ -27,7 +24,7 @@ Router.post('/', async (req, res) => {
 });
 
 //Delete Route
-Router.delete('/:id', async (req, res) => {
+Router.delete('/shows/:id', async (req, res) => {
     try {
         res.json(await Show.findByIdAndDelete(req.params.id));
     } catch (error) {
@@ -36,7 +33,7 @@ Router.delete('/:id', async (req, res) => {
 });
 
 //Update Route
-Router.put('/:id', async (req, res) => {
+Router.put('/shows/:id', async (req, res) => {
     try {
         res.json(await Show.findByIdAndUpdate(req.params.id, { new: true }));
     } catch (error) {
