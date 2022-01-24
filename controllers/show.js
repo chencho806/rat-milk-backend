@@ -35,7 +35,11 @@ Router.delete('/shows/:id', async (req, res) => {
 //Update Route
 Router.put('/shows/:id', async (req, res) => {
     try {
-        res.json(await Show.findByIdAndUpdate(req.params.id, { new: true }));
+        res.json(await Show.findByIdAndUpdate(
+            req.params.id, 
+            req.body, 
+            { new: true })
+        );
     } catch (error) {
         res.status(400).json(error);
     }
